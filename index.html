@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10131d"><title>AfterHours — Community</title>
+<style>
+:root{color-scheme:dark;--bg:#0c0f18;--panel:#151b29;--panel2:#1b2232;--line:#303a50;--muted:#9eabc0;--text:#f4f6fb;--accent:#b9a6ff;--purple:#8b5cf6;--green:#75d6b0;--red:#ff8799}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#2a2450 0,transparent 45%),var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{height:66px;position:sticky;top:0;z-index:5;background:#0c0f18eF;backdrop-filter:blur(18px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(20px,calc((100vw - 1160px)/2));gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:19px;letter-spacing:-.4px}.logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#e4ddff,#8b5cf6);display:grid;place-items:center;color:#171326;font-weight:950}
+nav{display:flex;gap:7px}nav button,.ghost{background:transparent;color:#cbd3e2;border:1px solid transparent;padding:9px 12px;border-radius:10px}nav button.active,nav button:hover,.ghost:hover{background:#282342;border-color:#514572;color:white}
+.actions{display:flex;gap:8px;align-items:center}.btn{border:0;background:var(--accent);color:#171326;font-weight:800;padding:10px 15px;border-radius:10px}.btn.secondary{background:#272f42;color:#e5e9f2;border:1px solid #3b4760}.btn.danger{background:#492632;color:#ffd6de;border:1px solid #794052}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#9c83e9,#4c397b);font-weight:800;color:white;flex-shrink:0}
+main{max-width:1160px;margin:28px auto;padding:0 20px;display:grid;grid-template-columns:220px minmax(0,1fr) 245px;gap:22px}
+.card{background:linear-gradient(160deg,#171e2d,#131927);border:1px solid var(--line);border-radius:17px;padding:17px}
+.sidebar{position:sticky;top:88px;align-self:start}.side-link{display:flex;gap:11px;align-items:center;padding:11px;border-radius:10px;color:#c4cddd;cursor:pointer}.side-link:hover,.side-link.active{background:#292342;color:#fff}.side-link span:first-child{width:20px;text-align:center}
+.center{min-width:0}.welcome{padding:22px;background:linear-gradient(120deg,#272044,#182033);margin-bottom:17px}.welcome h1{font-size:25px;letter-spacing:-.8px;margin:0 0 5px}.welcome p{color:#c1c9d8;margin:0}
+.composer{display:flex;gap:11px;align-items:center;margin-bottom:16px}.composer input{flex:1;min-width:0;border:1px solid var(--line);background:#0e1421;color:white;padding:13px 14px;border-radius:12px}
+.post{margin-bottom:14px}.post-head{display:flex;align-items:center;gap:10px}.post-head .who{flex:1}.who b{display:block}.who small,.muted{color:var(--muted);font-size:11px}.post p{color:#dce2ed;line-height:1.65}.post-actions{display:flex;gap:8px;border-top:1px solid var(--line);padding-top:12px}.post-actions button{background:transparent;border:1px solid #354057;color:#c6d0e0;padding:7px 11px;border-radius:9px;font-size:12px}.post-actions button:hover{border-color:#8b75ce;color:white}
+.right{position:sticky;top:88px;align-self:start}.right h3{font-size:13px;margin:0 0 12px}.person{display:flex;gap:9px;align-items:center;margin:13px 0}.person .info{flex:1}.person b{font-size:12px;display:block}.person small{color:var(--muted);font-size:10px}.person button{padding:6px 9px;font-size:11px}
+.tag{display:inline-block;border:1px solid #514572;color:#cfc2ff;border-radius:20px;padding:3px 8px;font-size:10px}
+footer{text-align:center;color:#748097;font-size:11px;padding:30px 12px 45px}
+.modal{position:fixed;inset:0;z-index:20;background:#050711d9;display:none;place-items:center;padding:16px}.modal.show{display:grid}.dialog{width:min(530px,100%);max-height:92vh;overflow:auto;background:#171d2b;border:1px solid #414b63;border-radius:19px;padding:22px;box-shadow:0 25px 90px #000b}.dialog h2{margin:0 0 5px;font-size:21px}.dialog p{color:var(--muted);font-size:12px}.close{float:right;background:transparent;border:0;color:#c5cede;font-size:22px}
+label{display:block;color:#cbd3e2;font-size:12px;margin:13px 0 6px}input,textarea,select{width:100%;border:1px solid #3b465e;background:#0c1220;color:white;padding:11px 12px;border-radius:10px;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--accent)}textarea{min-height:100px;resize:vertical}.full{width:100%;margin-top:15px}
+.tabs{display:flex;gap:7px;background:#0d1320;padding:5px;border-radius:11px;margin:16px 0}.tabs button{flex:1;border:0;background:transparent;color:#aeb8ca;padding:9px;border-radius:8px}.tabs button.active{background:#30264e;color:white}
+.note{background:#211c35;border:1px solid #514572;color:#c9c1df;padding:11px;border-radius:10px;font-size:11px;margin-top:13px}.success{background:#17352e;color:#a9f0d4;padding:10px;border-radius:9px;font-size:12px;margin-top:10px;display:none}.success.show{display:block}
+.chatbox{position:fixed;right:20px;bottom:20px;width:min(390px,calc(100vw - 40px));height:min(560px,calc(100vh - 100px));z-index:10;background:#151c2a;border:1px solid #48536d;border-radius:18px;box-shadow:0 18px 70px #000b;display:none;flex-direction:column;overflow:hidden}.chatbox.show{display:flex}.chathead{display:flex;align-items:center;gap:10px;padding:13px;border-bottom:1px solid var(--line)}.chathead .detail{flex:1}.chathead b{display:block}.phone{color:#c9baff;font-size:11px}.chatbody{padding:14px;overflow:auto;flex:1}.bubble{background:#252e42;padding:10px 12px;border-radius:13px;max-width:84%;margin:9px 0;font-size:12px}.bubble.mine{margin-left:auto;background:#44346b}.bubble small{display:block;text-align:right;color:#b5bfd0;font-size:9px;margin-top:5px}.chatfoot{padding:11px;border-top:1px solid var(--line);display:flex;gap:7px}.chatfoot input{flex:1;min-width:0}.chatfoot button{padding:9px 12px}.chat-disclosure{font-size:10px;color:#aeb9cc;background:#111725;padding:9px 12px;border-top:1px solid var(--line)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#eee8ff;color:#171326;padding:10px 16px;border-radius:12px;font-size:12px;font-weight:700;display:none;z-index:40}
+@media(max-width:900px){main{grid-template-columns:190px minmax(0,1fr)}.right{display:none}}
+@media(max-width:620px){header{padding:0 13px;height:60px}nav{display:none}main{display:block;padding:0 12px;margin:14px auto}.sidebar{position:static;display:flex;overflow:auto;margin-bottom:13px;padding:7px}.side-link{white-space:nowrap;padding:8px 10px}.side-link span:first-child{display:none}.welcome{padding:17px}.welcome h1{font-size:22px}.card{padding:14px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">A</div> afterhours</div>
+ <nav><button class="active" data-view="home">Home</button><button data-view="messages" onclick="openChat()">Messages</button><button data-view="profile" onclick="showProfile()">Profile</button></nav>
+ <div class="actions"><button class="ghost" onclick="openAuth('login')">Log in</button><button class="btn" onclick="openAuth('signup')">Join</button></div>
+</header>
+<main>
+ <aside class="sidebar card">
+  <div class="side-link active" onclick="toast('You are viewing the community feed.')"><span>⌂</span> Home</div>
+  <div class="side-link" onclick="openChat()"><span>✉</span> Messages</div>
+  <div class="side-link" onclick="showProfile()"><span>◉</span> My profile</div>
+  <div class="side-link" onclick="openPrivacy()"><span>⚙</span> Privacy & safety</div>
+  <div class="side-link" onclick="openAuth('signup')"><span>＋</span> Create account</div>
+ </aside>
+ <section class="center">
+  <div class="card welcome"><span class="tag">COMMUNITY PREVIEW</span><h1>Make room for good conversations.</h1><p>Share ideas, discover people and connect with respect.</p></div>
+  <div class="card composer"><div class="avatar">Y</div><input id="postInput" placeholder="Share something with the community…" onclick="openAuth('signup')"><button class="btn" onclick="createPost()">Post</button></div>
+  <div id="feed">
+   <article class="card post"><div class="post-head"><div class="avatar">M</div><div class="who"><b>Mira S.</b><small>Community member · 18 min ago</small></div><span class="tag">Photography</span></div><p>Sometimes the best photographs happen when you slow down and notice the ordinary things around you. What is one small thing that made your day better?</p><div class="post-actions"><button onclick="like(this)">♡ Like · 24</button><button onclick="openChat()">✉ Message</button><button onclick="reportPost()">⚑ Report</button></div></article>
+   <article class="card post"><div class="post-head"><div class="avatar" style="background:linear-gradient(135deg,#6aafaa,#286d72)">R</div><div class="who"><b>Rohan K.</b><small>Community member · 1 hr ago</small></div><span class="tag">Books</span></div><p>Looking for thoughtful book recommendations about technology, society and how the internet is changing human relationships. What should I read first?</p><div class="post-actions"><button onclick="like(this)">♡ Like · 12</button><button onclick="openChat()">✉ Message</button><button onclick="reportPost()">⚑ Report</button></div></article>
+  </div>
+ </section>
+ <aside class="right card"><h3>People to discover</h3>
+  <div class="person"><div class="avatar">M</div><div class="info"><b>Mira S.</b><small>Photography · Community</small></div><button class="btn secondary" onclick="openChat()">Chat</button></div>
+  <div class="person"><div class="avatar" style="background:#34747a">R</div><div class="info"><b>Rohan K.</b><small>Books · Culture</small></div><button class="btn secondary" onclick="openChat()">Chat</button></div>
+  <div class="person"><div class="avatar" style="background:#9b654e">A</div><div class="info"><b>Alex D.</b><small>Design · Music</small></div><button class="btn secondary" onclick="openChat()">Chat</button></div>
+  <hr style="border:0;border-top:1px solid var(--line);margin:17px 0">
+  <h3>Community guidelines</h3><p class="muted">Respect consent, protect personal information, and report harmful behaviour. No harassment, threats, scams or non-consensual content.</p>
+  <button class="ghost" onclick="openPrivacy()">Privacy & safety details →</button>
+ </aside>
+</main>
+<footer>AfterHours · Educational website prototype · Demonstration data only</footer>
+
+<div class="modal" id="authModal"><div class="dialog">
+ <button class="close" onclick="closeModal('authModal')">×</button><h2 id="authTitle">Join AfterHours</h2><p id="authSubtitle">Create your community profile.</p>
+ <div class="tabs"><button id="signupTab" class="active" onclick="setAuthMode('signup')">Sign up</button><button id="loginTab" onclick="setAuthMode('login')">Log in</button></div>
+ <div id="nameField"><label>Display name</label><input id="displayName" placeholder="Your name"></div>
+ <label>Phone number</label><input id="phoneInput" placeholder="+91 98765 43210" inputmode="tel">
+ <label>Email (optional in this demo)</label><input id="emailInput" type="email" placeholder="you@example.com">
+ <button class="btn full" onclick="demoAuth()">Continue</button><div class="success" id="authSuccess"></div>
+ <div class="note">Educational demo only: this screen does not send SMS or email, verify identity, or create a server account. A live website needs verified OTP/OAuth authentication and secure backend storage.</div>
+</div></div>
+
+<div class="modal" id="privacyModal"><div class="dialog">
+ <button class="close" onclick="closeModal('privacyModal')">×</button><h2>Privacy & safety</h2><p>Example settings and policies for the proposed website.</p>
+ <div class="note"><b>Phone number visibility</b><br>Your number is private on public profiles and search. It becomes visible only to the other participant after a one-to-one chat is accepted.</div>
+ <div class="note"><b>Safety review</b><br>Users can report specific messages or files. Authorized moderators may review reported content and limited context. Every moderator access should be logged and audited.</div>
+ <div class="note"><b>Encryption disclosure</b><br>This moderation model is not end-to-end encrypted: the service can access content when a report is submitted. Explain this clearly to users.</div>
+ <button class="btn full" onclick="closeModal('privacyModal')">Got it</button>
+</div></div>
+
+<div class="modal" id="reportModal"><div class="dialog">
+ <button class="close" onclick="closeModal('reportModal')">×</button><h2>Report content</h2><p>Choose why you are reporting this item.</p>
+ <label>Reason</label><select id="reportReason"><option>Harassment or bullying</option><option>Threats or intimidation</option><option>Scam or impersonation</option><option>Non-consensual intimate content</option><option>Other safety concern</option></select>
+ <label>Additional details (optional)</label><textarea id="reportDetails" placeholder="Tell the safety team what happened…"></textarea>
+ <button class="btn full" onclick="submitReport()">Submit demo report</button><div class="success" id="reportSuccess"></div>
+ <div class="note">In a real deployment, reports must be securely sent to a restricted moderation queue. Do not expose all private conversations to all admins.</div>
+</div></div>
+
+<div class="modal" id="profileModal"><div class="dialog">
+ <button class="close" onclick="closeModal('profileModal')">×</button><h2>Your profile preview</h2><p>Public profile information is separate from private account credentials.</p>
+ <div class="person"><div class="avatar">Y</div><div class="info"><b>Your display name</b><small>Community member</small></div></div>
+ <div class="note">Your phone number is not displayed on this profile. It is visible only within an accepted one-to-one conversation.</div>
+ <button class="btn full" onclick="closeModal('profileModal')">Close</button>
+</div></div>
+
+<div class="chatbox" id="chatbox">
+ <div class="chathead"><div class="avatar">M</div><div class="detail"><b>Mira S.</b><span class="phone">+91 98••• ••210 · accepted chat</span></div><button class="ghost" onclick="closeChat()">×</button></div>
+ <div class="chatbody" id="chatbody">
+  <div class="note">Contact number is shown because this is an accepted one-to-one conversation. It is not public.</div>
+  <div class="bubble">Hi! I saw your post about photography. What camera do you use?<small>10:14</small></div>
+  <div class="bubble mine">Thanks! I mostly use my phone and natural light.<small>10:16 · Sent</small></div>
+  <div class="bubble">That’s great. Natural light can make a big difference.<small>10:17</small></div>
+ </div>
+ <div class="chatfoot"><input id="messageInput" placeholder="Write a message…" onkeydown="if(event.key==='Enter')sendMessage()"><button class="btn" onclick="sendMessage()">Send</button></div>
+ <div class="chat-disclosure">Demo messages stay in this browser only. A real moderation-enabled service is not end-to-end encrypted and must disclose report-review access.</div>
+</div>
+<div id="toast"></div>
+<script>
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2400)}
+function openAuth(mode){setAuthMode(mode);document.getElementById('authModal').classList.add('show')}
+function setAuthMode(mode){const signup=mode==='signup';document.getElementById('signupTab').classList.toggle('active',signup);document.getElementById('loginTab').classList.toggle('active',!signup);document.getElementById('nameField').style.display=signup?'block':'none';document.getElementById('authTitle').textContent=signup?'Join AfterHours':'Welcome back';document.getElementById('authSubtitle').textContent=signup?'Create your community profile.':'Log in to continue.';document.getElementById('authSuccess').classList.remove('show');window.authMode=mode}
+function demoAuth(){const phone=document.getElementById('phoneInput').value.trim();if(!/^\+[1-9]\d{7,14}$/.test(phone)){toast('Enter a phone number with country code, e.g. +919876543210');return}if(window.authMode==='signup'&&!document.getElementById('displayName').value.trim()){toast('Add a display name first.');return}const s=document.getElementById('authSuccess');s.textContent='Demo '+(window.authMode==='signup'?'registration':'login')+' preview complete. No account was created and no number was verified.';s.classList.add('show')}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function openChat(){document.getElementById('chatbox').classList.add('show')}
+function closeChat(){document.getElementById('chatbox').classList.remove('show')}
+function sendMessage(){const input=document.getElementById('messageInput'),v=input.value.trim();if(!v)return;const b=document.createElement('div');b.className='bubble mine';b.textContent=v;const s=document.createElement('small');s.textContent='Now · Demo';b.appendChild(s);document.getElementById('chatbody').appendChild(b);input.value='';b.scrollIntoView({block:'nearest'});toast('Message added to this local demo.')}
+function openPrivacy(){document.getElementById('privacyModal').classList.add('show')}
+function showProfile(){document.getElementById('profileModal').classList.add('show')}
+function reportPost(){document.getElementById('reportModal').classList.add('show')}
+function submitReport(){const s=document.getElementById('reportSuccess');s.textContent='Demo report prepared: '+document.getElementById('reportReason').value+'. No report was sent to a server.';s.classList.add('show')}
+function like(btn){const liked=btn.dataset.liked==='yes';btn.dataset.liked=liked?'no':'yes';btn.textContent=liked?'♡ Like':'♥ Liked';}
+function createPost(){const input=document.getElementById('postInput'),v=input.value.trim();if(!v){toast('Write something before posting.');return}const article=document.createElement('article');article.className='card post';const head=document.createElement('div');head.className='post-head';head.innerHTML='<div class="avatar">Y</div><div class="who"><b>You</b><small>Just now · Local demo</small></div><span class="tag">Community</span>';const p=document.createElement('p');p.textContent=v;const actions=document.createElement('div');actions.className='post-actions';actions.innerHTML='<button onclick="like(this)">♡ Like</button><button onclick="openChat()">✉ Message</button><button onclick="reportPost()">⚑ Report</button>';article.append(head,p,actions);document.getElementById('feed').prepend(article);input.value='';toast('Post added locally to the demo.')}
+</script>
+</body></html>
