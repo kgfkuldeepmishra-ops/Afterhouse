@@ -67,8 +67,10 @@ label{display:block;color:#cbd3e2;font-size:12px;margin:13px 0 6px}input,textare
  <button class="close" onclick="closeModal('authModal')">×</button><h2 id="authTitle">Join AfterHours</h2><p id="authSubtitle">Create your community profile.</p>
  <div class="tabs"><button id="signupTab" class="active" onclick="setAuthMode('signup')">Sign up</button><button id="loginTab" onclick="setAuthMode('login')">Log in</button></div>
  <div id="nameField"><label>Display name</label><input id="displayName" placeholder="Your name"></div>
- <label>Phone number</label><input id="phoneInput" placeholder="+91 98765 43210" inputmode="tel">
- <label>Email (optional in this demo)</label><input id="emailInput" type="email" placeholder="you@example.com">
+ <div id="phoneField">
+  <label>Phone number</label>
+  <input id="phoneInput" placeholder="+91 98765 43210" inputmode="tel">
+ </div>
  <button class="btn full" onclick="demoAuth()">Continue</button><div class="success" id="authSuccess"></div>
  <div class="note">Educational demo only: this screen does not send SMS or email, verify identity, or create a server account. A live website needs verified OTP/OAuth authentication and secure backend storage.</div>
 </div></div>
